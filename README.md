@@ -1,2 +1,3 @@
 # CPPomonaFlip
-For tomas
+
+Tracking the attendance 
