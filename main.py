@@ -5,6 +5,14 @@ class Person:
         self.name = name
         self.points = 0
 
+    def attended_Event(self):
+        self.points+=5
+    def participated_Event(self):
+        self.points+=3
+    def cleaned_Up(self):
+        self.points+=1
+
+
 def main(): 
     # Read the Excel file
     df = pd.read_excel("data.xlsx")
@@ -47,7 +55,7 @@ def main():
         spec_cel = find_cell(cell)
         if did_rsvp(spec_cel):
             person = Person(cell)
-            person.points += 5
+            person.attended_Event()
             attended.append(person)
         elif spec_cel == None:
             print("DNE")
