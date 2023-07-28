@@ -1,6 +1,14 @@
 import pandas as pd
 from openpyxl import load_workbook
 
+# Classes
+
+class Person: 
+    def __init__ (self, name):
+        self.name = name
+        self.points = 0
+
+
 # Read the Excel file
 df = pd.read_excel("data.xlsx")
 
@@ -35,26 +43,31 @@ non_empty_third_column = person_column_data.dropna().iloc[:91]
 # arrays
 attended = []
 absent = []
-# get green cells first
+
+
+# adding to arrays
 for cell in non_empty_third_column:
     spec_cel = find_cell(cell)
     if did_rsvp(spec_cel):
-        attended.append(cell)
-        # print (cell + " RSVP'ed and attended")
+        person = Person(cell)
+        person.points += 5
+        attended.append(person)
     elif spec_cel == None:
         print("DNE")
     else:
-        absent.append(cell)
-        #print(cell + " did not attend")
+        abPerson = Person(cell)
+        absent.append(abPerson)
     
 
 # Printing the arrays
 
 print("People that RSVP'ed and Attended: ")
-print(attended)
+for person in attended:
+    print(f"{person.name}: {person.points} points")
 print() 
 print("People that were absent")
-print(absent)
+for person in absent: 
+    print(f"{person.name}")
 
 
 
