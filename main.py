@@ -30,20 +30,31 @@ person_column_name = df.columns[2]  # Assuming the third column is at index 2 (0
 person_column_data = df[person_column_name]
 
 # Filter the non-empty cells from both columns
-non_empty_third_column = person_column_data.dropna().iloc[:8]
+non_empty_third_column = person_column_data.dropna().iloc[:91]
 
-
+# arrays
+attended = []
+absent = []
 # get green cells first
 for cell in non_empty_third_column:
     spec_cel = find_cell(cell)
     if did_rsvp(spec_cel):
-        print (cell + " RSVP'ed and attended")
+        attended.append(cell)
+        # print (cell + " RSVP'ed and attended")
     elif spec_cel == None:
         print("DNE")
     else:
-        print(cell + " did not attend")
+        absent.append(cell)
+        #print(cell + " did not attend")
     
 
-# Print the green cells in the third column
+# Printing the arrays
+
+print("People that RSVP'ed and Attended: ")
+print(attended)
+print() 
+print("People that were absent")
+print(absent)
+
 
 
